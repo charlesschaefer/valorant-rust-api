@@ -20,12 +20,8 @@ impl ValorantAPI {
     pub async fn request(&self, method: String) -> Result<serde_json::Value, Error> {
         let mut url = self.base_url.clone();
         url.push_str(method.as_str());
-        //url.push_str("?api_key=");
-        //url.push_str(&self.api_key.as_str());
 
         let auth_token: String = format!("{}", self.api_key);
-
-        print!("Auth:  {}, url: {}", auth_token, url);
 
         let client = Client::new();
         let res = client.get(url)
